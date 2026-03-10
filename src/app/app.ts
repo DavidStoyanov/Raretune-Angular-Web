@@ -3,11 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { asapScheduler } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+    selector: 'app-root',
+    imports: [RouterOutlet],
+    templateUrl: './app.html',
+    styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('raretune');
+    protected readonly title = signal('raretune');
 }
