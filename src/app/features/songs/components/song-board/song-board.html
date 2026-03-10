@@ -1,0 +1,9 @@
+<div class="container bg-light">
+    <div class="row">
+        @for (song of songs$ | async; track $index) {
+        <div class="col-sm-3">
+            <app-song-item  [songItem]="song"></app-song-item>
+        </div>
+        }
+    </div>
+</div>
