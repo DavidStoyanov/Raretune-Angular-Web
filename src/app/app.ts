@@ -7,6 +7,7 @@ import { asapScheduler } from 'rxjs';
     imports: [RouterOutlet, RouterModule],
     templateUrl: './app.html',
     styleUrl: './app.scss',
+    standalone: true
 })
 export class App {
     protected readonly title = signal('raretune');

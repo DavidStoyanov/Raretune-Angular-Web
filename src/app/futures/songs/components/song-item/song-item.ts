@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Song } from '../../models';
 
 @Component({
     selector: 'app-song-item',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
     styleUrl: './song-item.scss',
 })
 export class SongItem {
-
+    @Input("songItem") song!: Song;
 }

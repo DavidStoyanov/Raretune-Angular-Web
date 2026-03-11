@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import { NewAlbum } from './futures/albums/new-album/new-album';
+
+import { NewSong, SongBoard } from './futures/songs/components';
 
 export const routes: Routes = [
-    { path: 'albums/new', component: NewAlbum },
+    { path: 'song/new', component: NewSong },
+    { path: 'song/catalog', component: SongBoard },
 ];
