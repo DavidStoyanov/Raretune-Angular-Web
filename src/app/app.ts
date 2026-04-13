@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { asapScheduler } from 'rxjs';
+
+import { Logout } from './features/users/components';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, RouterModule],
+    imports: [RouterOutlet, RouterModule, Logout],
     templateUrl: './app.html',
     styleUrl: './app.scss',
     standalone: true

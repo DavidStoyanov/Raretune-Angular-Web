@@ -1,0 +1,94 @@
+<div class="container col-sm-8 col-md-6 col-lg-4">
+
+    <form class="row g-1" [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="post">
+        <!-- https://pixabay.com/vectors/vinyl-platinum-disk-music-dj-2241789/ -->
+        <img class="mb-4" src="https://cdn.pixabay.com/photo/2017/04/19/10/24/vinyl-2241789_1280.png" alt="" width="72" height="57">
+
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+        <div class="form-floating">
+            <input
+                type="email"
+                id="email"
+                class="form-control"
+                [class.is-valid]="emailControl?.valid"
+                [class.is-invalid]="isEmailInvalid"
+                placeholder="name@example.com"
+                formControlName="email">
+            <label for="email">Email address</label>
+
+            @if(isEmailInvalid) {
+            <small class="input-danger text-danger">
+                {{ emailErrorMessage }}
+            </small>
+            }
+        </div>
+        
+        <div class="form-floating">
+            <input
+                type="text"
+                id="username"
+                class="form-control"
+                [class.is-valid]="usernameControl?.valid"
+                [class.is-invalid]="isUsernameInvalid"
+                placeholder="roberto00"
+                formControlName="username">
+            <label for="username">Username</label>
+
+            @if(isUsernameInvalid) {
+            <small class="input-danger text-danger">
+                {{ usernameErrorMessage }}
+            </small>
+            }
+        </div>
+
+        <div class="row g-1" formGroupName="passData">
+            <div class="form-floating">
+                <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    [class.is-valid]="passwordControl?.valid"
+                    [class.is-invalid]="isPassDataInvalid"
+                    placeholder="Password"
+                    formControlName="password">
+                <label for="password">Password</label>
+
+                @if((isPassDataInvalid || isPasswordInvalid) && passwordErrorMessage.length) {
+                <small class="input-danger text-danger">
+                    {{ passwordErrorMessage }}
+                </small>
+                }
+            </div>
+
+            <div class="form-floating">
+                <input
+                    type="password"
+                    id="rePassword"
+                    class="form-control"
+                    [class.is-valid]="rePasswordControl?.valid"
+                    [class.is-invalid]="isPassDataInvalid"
+                    placeholder="Retype password"
+                    formControlName="rePassword">
+                <label for="rePassword">Retype password</label>
+
+                @if((isPassDataInvalid || isRePasswordInvalid) && rePasswordErrorMessage.length) {
+                <small class="input-danger text-danger">
+                    {{ rePasswordErrorMessage }}
+                </small>
+                }
+
+                @if(isPassDataInvalid && !isRePasswordInvalid && passDataErrorMessage.length) {
+                <small class="input-danger text-danger">
+                    {{ passDataErrorMessage }}
+                </small>
+                }
+            </div>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="registerForm.invalid">Register</button>
+
+        <p class="mt-5 mb-3 text-body-secondary">©Copyright; 2026</p>
+    </form>
+
+</div>
