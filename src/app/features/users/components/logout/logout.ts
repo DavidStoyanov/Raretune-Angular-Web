@@ -13,7 +13,14 @@ export class Logout {
     private router = inject(Router);
     private usersApi = inject(UsersApi);
 
-    onClick() {
+    protected readonly isLoggedIn = this.usersApi.isLoggedIn;
+    protected readonly getUser = this.usersApi.currentUser;
+
+    onProfile() {
+        this.router.navigate(['/user/profile']);
+    }
+
+    onLogout() {
         this.usersApi.logout().subscribe({
             next: (response) => {
                 response ?
@@ -25,4 +32,5 @@ export class Logout {
             }
         })
     }
+
 }

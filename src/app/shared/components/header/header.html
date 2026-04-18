@@ -1,0 +1,58 @@
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom gap-1">
+        <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" aria-hidden="true">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4">Raretune</span>
+        </a>
+
+        <ul class="nav nav-pills flex-grow-1 d-flex justify-content-center align-items-center">
+            <li class="nav-item">
+                <a routerLink="/" class="nav-link">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/song/catalog" class="nav-link">Songs</a>
+            </li>
+            @if(isLoggedIn()) {
+            <li class="nav-item">
+                <a routerLink="/song/new" class="nav-link">Add Song</a>
+            </li>
+            }
+
+            <li class="nav-item">
+                <a routerLink="/faq" class="nav-link">FAQs</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/about" class="nav-link">About</a>
+            </li>
+        </ul>
+
+        @if(isLoggedIn()) {
+        <app-logout></app-logout>
+        } @else {
+        <div class="col-md-3 text-end">
+            <button (click)="onLogin()" type="button" class="btn btn-outline-black me-2">Login</button>
+            <button (click)="onRegister()" type="button" class="btn btn-outline-black">Sign-up</button>
+        </div>
+        }
+        
+    </header>
+</div>
+
+
+<!-- <div class="container bg-dark-subtle">
+    <h1>Hello, {{ title() }}</h1>
+    <p>Congratulations! Your app is running. 🎉</p>
+    <a routerLink="/song/new">Add Song</a>
+    <p></p>
+    <a routerLink="/song/catalog">Catalog</a>
+    <p></p>
+    <a routerLink="/auth/login">Login</a>
+    <p></p>
+    <a routerLink="/auth/register">Register</a>
+    <p></p>
+    <app-logout></app-logout>
+</div>
+ -->

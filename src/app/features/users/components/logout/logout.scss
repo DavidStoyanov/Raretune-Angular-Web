@@ -1,0 +1,13 @@
+.btn-outline-black {
+    @extend .btn-outline-secondary !optional;
+
+    --bs-btn-color: #000;
+    --bs-btn-border-color: #000;
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-color: #fff;
+    white-space: nowrap;
+
+    &:hover {
+        color: #fff !important;
+    }
+}
