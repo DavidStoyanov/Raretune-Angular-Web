@@ -1,0 +1,48 @@
+.container {
+    border: 1px solid #ccc;
+}
+
+.profile-wrap,
+.songs-wrap {
+    
+    .container {
+        border-radius: 0.5em;
+        background-color: #eee;
+        min-height: 80vh;
+
+        
+    }
+}
+
+.profile-wrap {
+    .container {
+        img {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .pair {
+            background-color: #fff;
+            border-radius: 0.5em;
+            margin: 1em 0;
+            padding: 0.75em;
+
+            .title,
+            .value {
+                margin-bottom: 0.15em;
+            }
+
+            .title {
+                font-size: 1.1em;
+            }
+            .value {
+                font-size: 1.5em;
+                padding-left: 0.1em;
+            }
+        }
+    }
+}

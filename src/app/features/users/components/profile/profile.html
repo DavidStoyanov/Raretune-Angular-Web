@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row p-1">
+        <section class="profile-wrap col-12 col-lg-6">
+            <div class="container p-4">
+                <!-- https://pixabay.com/vectors/avatar-man-male-glasses-spectacles-2024924/ -->
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/15/12/avatar-2024924_1280.png" alt="profile-pic">
+                <section class="pair">
+                    <p class="title">Username:</p>
+                    <p class="value">{{ getUser()?.username }}</p>
+                </section>
+                <section class="pair">
+                    <p class="title">Email:</p>
+                    <p class="value">{{ getUser()?.email }}</p>
+                </section>
+            </div>
+        </section>
+        <section class="songs-wrap col-12 col-lg-6">
+            <div class="container d-flex flex-column flex-md-row gap-1 py-2">
+                <section class="flex-grow-1">
+                    <div class="container">
+                        <p>Favorite songs:</p>
+                        <p>44</p>
+                    </div>
+                    <div class="container">
+                        <p>Latest 3</p>
+                        <div>
+                            <section>song1 loved</section>
+                            <section>song2 loved</section>
+                            <section>song3 loved</section>
+                        </div>
+                    </div>
+                </section>
+                <section class="flex-grow-1">
+                    <div class="container">
+                        <p>Posted songs:</p>
+                        <p>5</p>
+                    </div>
+                    <div class="container">
+                        <p>Latest 3</p>
+                        <div>
+                            <section>song1 posted</section>
+                            <section>song2 posted</section>
+                            <section>song3 posted</section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
