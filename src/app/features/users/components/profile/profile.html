@@ -15,34 +15,20 @@
             </div>
         </section>
         <section class="songs-wrap col-12 col-lg-6">
-            <div class="container d-flex flex-column flex-md-row gap-1 py-2">
-                <section class="flex-grow-1">
-                    <div class="container">
-                        <p>Favorite songs:</p>
-                        <p>44</p>
-                    </div>
-                    <div class="container">
-                        <p>Latest 3</p>
-                        <div>
-                            <section>song1 loved</section>
-                            <section>song2 loved</section>
-                            <section>song3 loved</section>
-                        </div>
-                    </div>
+            <div class="song-container container d-flex flex-column gap-1 py-2">
+                <section>
+                    <app-latest-profile-song
+                        [count]="likeCount"
+                        [songs]="likedSongs"
+                        [criteria]="'likes'">
+                    </app-latest-profile-song>
                 </section>
-                <section class="flex-grow-1">
-                    <div class="container">
-                        <p>Posted songs:</p>
-                        <p>5</p>
-                    </div>
-                    <div class="container">
-                        <p>Latest 3</p>
-                        <div>
-                            <section>song1 posted</section>
-                            <section>song2 posted</section>
-                            <section>song3 posted</section>
-                        </div>
-                    </div>
+                <section>
+                    <app-latest-profile-song
+                        [count]="postCount"
+                        [songs]="postedSongs"
+                        [criteria]="'posts'">
+                    </app-latest-profile-song>
                 </section>
             </div>
         </section>

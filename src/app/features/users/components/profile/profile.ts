@@ -1,17 +1,21 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { UsersApi } from '../../services';
+import { LatestProfileSong } from '../../../songs/components';
 
 @Component({
     selector: 'app-profile',
-    imports: [],
+    imports: [LatestProfileSong],
     templateUrl: './profile.html',
     styleUrl: './profile.scss',
 })
 export class Profile {
-    private router = inject(Router);
     private usersApi = inject(UsersApi);
 
     protected readonly getUser = this.usersApi.currentUser;
+
+    protected likeCount: number = 44;
+    protected postCount: number = 5;
+    protected likedSongs: number[] = [1,2,3];
+    protected postedSongs: number[] = [1,2];
 }

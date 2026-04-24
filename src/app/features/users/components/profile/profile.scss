@@ -46,3 +46,23 @@
         }
     }
 }
+
+.songs-wrap {
+    .song-container {
+
+        
+        & > section {
+            flex: 1 1 0; /* This fixes flex-item to know its height */
+            min-height: 0; /* This fixes flex-item to know its height */
+            border-radius: 0.5em;
+        }
+        
+        section:nth-child(1) {
+            background-color: rgb(255, 209, 209);
+        }
+
+        section:nth-child(2) {
+            background-color: rgb(220, 255, 252);
+        }
+    }
+}

@@ -1,7 +1,9 @@
 export interface User {
     id: string;
-    username: string;
     email: string;
+    username: string;
+    postedSongs: string[];
+    ownSongs: string[];
 }
 
 export interface UserRegisterDto {

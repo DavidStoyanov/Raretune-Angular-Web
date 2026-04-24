@@ -6,6 +6,18 @@
     content: '*'
 }
 
-app-song-board {
-    background-color: red;
+/* Remove default margins */
+body {
+    margin: 0;
 }
+
+/* Allow full-height layouts */
+html, body {
+    height: 100%;
+}
+
+/* Reset box sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+

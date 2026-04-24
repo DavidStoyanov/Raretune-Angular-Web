@@ -1,0 +1,14 @@
+<div class="top-three-container container row">
+    <section class="col-6 d-flex flex-column align-items-center justify-content-around">
+        <p class="title">{{getTitle()}}</p>
+        <p class="header">{{count}}</p>
+    </section>
+    <section class="col-6 d-flex flex-column align-items-center justify-content-around">
+        <p class="title">Latest 3</p>
+        <div class="value">
+        @for (song of songs; track $index) {
+            <app-latest-profile-song-item [index]="$index + 1"></app-latest-profile-song-item>
+        }
+        </div>
+    </section>
+</div>

@@ -6,6 +6,8 @@ export interface Song {
     date: string
     origin: string
     posterId: string
+    creatorId?: string
+    likedBy?: string[]
     imgUrl?: string
 }
 
