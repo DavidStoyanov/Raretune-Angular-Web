@@ -125,8 +125,6 @@ export class Register {
     onSubmit() {
         if (this.registerForm.invalid) return;
 
-        debugger;
-
         const { email, username, passData} = this.registerForm.value;
         const { password, rePassword } = passData;
 

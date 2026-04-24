@@ -21,15 +21,23 @@ export class SongsApi {
     }
 
     create(newSong: CreateSongDto): Observable<Song> {
-        return this.httpClient.post<Song>(`${this.apiUrl}`, newSong);
+        return this.httpClient.post<Song>(`${this.apiUrl}`, newSong, { withCredentials: true });
     }
 
     update(song: EditSongDto, songId: string): Observable<Song> {
-        return this.httpClient.put<Song>(`${this.apiUrl}/${songId}`, song);
+        return this.httpClient.put<Song>(`${this.apiUrl}/${songId}`, song, { withCredentials: true });
     }
 
     delete(songId: string): Observable<boolean> {
-        return this.httpClient.delete<boolean>(`${this.apiUrl}/${songId}`);
+        return this.httpClient.delete<boolean>(`${this.apiUrl}/${songId}`, { withCredentials: true });
+    }
+
+    like(songId: string): Observable<void> {
+        return this.httpClient.post<void>(`${this.apiUrl}/${songId}/like`, {}, { withCredentials: true });
+    }
+
+    dislike(songId: string): Observable<void> {
+        return this.httpClient.delete<void>(`${this.apiUrl}/${songId}/like`,{ withCredentials: true });
     }
 }
 

@@ -1,9 +1,66 @@
- <div class="container col-md-8">
-     <!-- https://pixabay.com/illustrations/icon-music-mp3-music-icon-1728567/ -->
-    <img src="https://cdn.pixabay.com/photo/2016/10/10/14/47/icon-1728567_1280.jpg" alt="song-default-icon">
-    <p>{{song?.name}}</p>
-    <p>{{song?.description}}</p>
-    <p>{{song?.creator}}</p>
-    <p>{{song?.date}}</p>
-    <p>{{song?.origin}}</p>
- </div>
+<div class="container col-md-8">
+    <div class="picture-container">
+        <!-- https://pixabay.com/illustrations/icon-music-mp3-music-icon-1728567/ -->
+        <img src="https://cdn.pixabay.com/photo/2016/10/10/14/47/icon-1728567_1280.jpg" alt="default-song-picture">
+    </div>
+    
+    @if (song?.name) {
+    <div class="pair">
+        <p class="title">Name:</p>
+        <p class="value">{{song?.name}}</p>
+    </div>
+    }
+
+    @if (song?.description) {
+    <div class="pair">
+        <p class="title">Description:</p>
+        <p class="value">{{song?.description}}</p>
+    </div>
+    }
+
+    @if (song?.creator) {
+    <div class="pair">
+        <p class="title">Creator:</p>
+        <p class="value">{{song?.creator}}</p>
+    </div>
+    }
+
+    @if (song?.date) {
+    <div class="pair">
+        <p class="title">Release Date:</p>
+        <p class="value">{{song?.date}}</p>
+    </div>
+    }
+
+    @if (song?.origin) {
+    <div class="pair">
+        <p class="title">Origin:</p>
+        <p class="value">{{song?.origin}}</p>
+    </div>
+    }
+
+    <div class="action-buttons-list">
+
+        <div class="left-group">
+            <button (click)="likeSong()" class="action-button like-btn">
+                <span class="icon-box">❤️</span>
+                <span class="btn-text">Like</span>
+            </button>
+        </div>
+
+        @if (song?.posterId === getUser()?.id) {
+        <div class="right-group">
+            <button (click)="editSong()" class="action-button edit-btn">
+                <span class="icon-box">✏️</span>
+                <span class="btn-text">Edit</span>
+            </button>
+            <button (click)="deleteSong()" class="action-button delete-btn">
+                <span class="icon-box">🗑️</span>
+                <span class="btn-text">Delete</span>
+            </button>
+        </div>
+        }
+        
+    </div>
+
+</div>

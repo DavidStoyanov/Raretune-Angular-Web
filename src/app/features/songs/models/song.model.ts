@@ -4,8 +4,8 @@ export interface Song {
     description: string
     creator: string
     date: string
-    publisher?: string //TODO: User
     origin: string
+    posterId: string
     imgUrl?: string
 }
 
@@ -14,7 +14,6 @@ export interface CreateSongDto {
     description: string
     creator: string
     date: string
-    publisher?: string
     origin: string
     imgUrl?: string
 }
@@ -24,7 +23,6 @@ export interface EditSongDto {
     description: string
     creator: string
     date: string
-    publisher?: string
     origin: string
     imgUrl?: string
 }
