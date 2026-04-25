@@ -9,8 +9,7 @@
         border-radius: 0.5em;
         background-color: #eee;
         min-height: 80vh;
-
-        
+        height: 100%;
     }
 }
 
@@ -49,7 +48,6 @@
 
 .songs-wrap {
     .song-container {
-
         
         & > section {
             flex: 1 1 0; /* This fixes flex-item to know its height */

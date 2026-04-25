@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 import { CreateSongDto, EditSongDto, Song } from '../models';
+import { Criteria } from '../../../core/models';
 
 @Injectable({
     providedIn: 'root',
@@ -39,6 +40,15 @@ export class SongsApi {
     dislike(songId: string): Observable<void> {
         return this.httpClient.delete<void>(`${this.apiUrl}/${songId}/like`,{ withCredentials: true });
     }
+    
+    getCountForSongs(criteria: Criteria): Observable<number> {
+        return this.httpClient.get<number>(`${this.apiUrl}/count?criteria=${criteria}`, { withCredentials: true });
+    }
+
+    getLatestThreeSongs(criteria: Criteria): Observable<Song[]> {
+        return this.httpClient.get<Song[]>(`${this.apiUrl}/three?criteria=${criteria}`, { withCredentials: true });
+    }
+    
 }
 
 /* 

@@ -30,7 +30,8 @@ section {
     }
 
     .value {
+        width: 100%;
         flex-grow: 2;
-        overflow: hidden;
+        //overflow: hidden;
     }
 }

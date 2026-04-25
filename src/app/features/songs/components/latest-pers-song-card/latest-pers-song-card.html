@@ -7,7 +7,7 @@
         <p class="title">Latest 3</p>
         <div class="value">
         @for (song of songs; track $index) {
-            <app-latest-pers-song-card-item [index]="$index + 1"></app-latest-pers-song-card-item>
+            <app-latest-pers-song-card-item [songItem]="song"></app-latest-pers-song-card-item>
         }
         </div>
     </section>

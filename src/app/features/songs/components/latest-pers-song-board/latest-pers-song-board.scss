@@ -1,0 +1,32 @@
+:host {
+    display: block;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.song-container {
+    height: 100%;
+    padding: 0;
+
+    @media screen {
+        
+    }
+
+    & > section {
+        //flex: 1 1 0; /* This fixes flex-item to know its height */
+        //min-height: 0; /* This fixes flex-item to know its height */
+        flex-grow: 1;
+        border-radius: 0.5em;
+    }
+    
+    section:nth-child(1) {
+        display: block;
+        background-color: rgb(255, 209, 209);
+    }
+
+    section:nth-child(2) {
+        display: block;
+        background-color: rgb(220, 255, 252);
+    }
+}
