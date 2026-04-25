@@ -1,16 +1,25 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter, map, mergeMap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { Footer, Header } from './shared/components';
-import { filter, map, mergeMap } from 'rxjs';
+import { CredentialsInterceptor } from './core/models';
 
 @Component({
     selector: 'app-root',
     imports: [RouterOutlet, Header, Footer],
     templateUrl: './app.html',
     styleUrl: './app.scss',
-    standalone: true
+    standalone: true,
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CredentialsInterceptor,
+            multi: true
+        }
+    ]
 })
 export class App {
     private readonly SITE_NAME: string = 'Raretune';

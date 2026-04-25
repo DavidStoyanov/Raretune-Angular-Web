@@ -33,15 +33,15 @@ export const routes: Routes = [
         data: { title: 'Catalog'},
     },
     {
-        path: 'song/:songId',
-        component: SongContent,
-        data: { title: 'Content'},
-    },
-    {
         path: 'song/new',
         loadComponent: () => import('./features/songs/components/song-create/song-create').then((c) => c.SongCreate),
         canActivate: [AuthGuard],
         data: { title: 'New Song'},
+    },
+    {
+        path: 'song/:songId',
+        component: SongContent,
+        data: { title: 'Content'},
     },
     {
         path: 'song/:songId/edit',
