@@ -41,12 +41,14 @@
 
     <div class="action-buttons-list">
 
+        @if (isLoggedIn()) {
         <div class="left-group">
             <button (click)="likeSong()" class="action-button like-btn">
                 <span class="icon-box">❤️</span>
                 <span class="btn-text">Like</span>
             </button>
         </div>
+        }
 
         @if (song?.posterId === getUser()?.id) {
         <div class="right-group">

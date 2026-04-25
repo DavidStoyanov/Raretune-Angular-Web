@@ -1,4 +1,5 @@
 <div class="col-md-3 text-end d-flex flex-nowrap">
+    <button (click)="onFavorites()" type="button" class="btn btn-outline-black me-2">Favorites</button>
     <button (click)="onProfile()" type="button" class="btn btn-outline-black me-2">{{ getUser()?.username }}'s profile</button>
     <button (click)="onLogout()" type="button" class="btn btn-outline-black">Logout</button>
 </div>

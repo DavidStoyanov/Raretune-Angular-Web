@@ -6,3 +6,5 @@ export * from './song-edit/song-edit';
 export * from './latest-pers-song-board/latest-pers-song-board';
 export * from './latest-pers-song-card/latest-pers-song-card';
 export * from './latest-pers-song-card-item/latest-pers-song-card-item';
+export * from './favorite-board/favorite-board';
+export * from './favorite-item/favorite-item';

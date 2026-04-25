@@ -13,7 +13,7 @@ export class SongsApi {
 
     constructor(private httpClient: HttpClient) {}
 
-    getAll(): Observable<Song[]> {
+    getAll(limit?: number): Observable<Song[]> {
         return this.httpClient.get<Song[]>(this.apiUrl);
     }
 
@@ -47,6 +47,10 @@ export class SongsApi {
 
     getLatestThreeSongs(criteria: Criteria): Observable<Song[]> {
         return this.httpClient.get<Song[]>(`${this.apiUrl}/three?criteria=${criteria}`, { withCredentials: true });
+    }
+
+    getFavoriteSongs(limit?: number): Observable<Song[]> {
+        return this.httpClient.get<Song[]>(`${this.apiUrl}/favorites?limit=${limit}`, { withCredentials: true });
     }
     
 }

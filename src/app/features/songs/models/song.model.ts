@@ -9,6 +9,7 @@ export interface Song {
     creatorId?: string
     likedBy?: string[]
     imgUrl?: string
+    favoriteLikedBy?: string; //only for favorites feature todo: remove
 }
 
 export interface CreateSongDto {

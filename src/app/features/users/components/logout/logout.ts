@@ -16,6 +16,10 @@ export class Logout {
     protected readonly isLoggedIn = this.usersApi.isLoggedIn;
     protected readonly getUser = this.usersApi.currentUser;
 
+    onFavorites() {
+        this.router.navigate(['/song/favorite']);
+    }
+
     onProfile() {
         this.router.navigate(['/user/profile']);
     }

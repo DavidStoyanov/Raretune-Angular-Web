@@ -28,7 +28,6 @@ export class SongContent implements OnInit {
 
     likeSong() {
         this.songsApi.like(this.songId).subscribe(); //todo: on next() switch button ot dislike
-        this.router.navigateByUrl(`/song/${this.songId}/like`);
     }
 
     editSong() {

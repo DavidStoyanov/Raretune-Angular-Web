@@ -1,0 +1,31 @@
+<div class="card shadow-sm h-100 p-3">
+    <h5 class="fw-bold">{{ song.name }}</h5>
+
+    <p class="text-muted mb-1">
+        by {{ song.creator }}
+    </p>
+
+    <p class="small text-secondary mb-2">
+        {{ song.description }}
+    </p>
+
+    <p class="mb-3">
+        ❤️ <strong>Total Likes: {{ song.likedBy?.length }}</strong>
+    </p>
+ 
+    <div class="mb-3">
+        <span class="badge bg-primary">
+            <!-- ★ Liked on {{ song. | date:'mediumDate' }} //todo -->
+        </span>
+    </div>
+
+    <div class="d-flex justify-content-between border-top pt-3">
+        <a [routerLink]="['/song', song.id]" class="btn btn-primary btn-sm">
+            View Song
+        </a>
+
+        <button class="btn btn-outline-danger btn-sm" (click)="removeFavorite()">
+            ♥ Remove from Favorites
+        </button>
+    </div>
+</div>

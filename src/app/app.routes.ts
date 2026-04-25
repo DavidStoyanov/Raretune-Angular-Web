@@ -39,6 +39,12 @@ export const routes: Routes = [
         data: { title: 'New Song'},
     },
     {
+        path: 'song/favorite',
+        loadComponent: () => import('./features/songs/components/favorite-board/favorite-board').then((c) => c.FavoriteBoard),
+        canActivate: [AuthGuard],
+        data: { title: 'Favorites'},
+    },
+    {
         path: 'song/:songId',
         component: SongContent,
         data: { title: 'Content'},
@@ -53,7 +59,9 @@ export const routes: Routes = [
 
     {
         path: '',
-        component: Home,
+        // component: Home,
+        redirectTo: '/song/catalog',
+        pathMatch: 'full',
         data: { title: 'Home'},
     },
     {
