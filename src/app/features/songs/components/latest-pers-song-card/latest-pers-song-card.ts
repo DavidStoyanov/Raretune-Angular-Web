@@ -1,14 +1,13 @@
 import { Component, Input } from '@angular/core';
-
-import { LatestProfileSongItem } from '../latest-profile-song-item/latest-profile-song-item';
+import { LatestPersSongCardItem } from "../latest-pers-song-card-item/latest-pers-song-card-item";
 
 @Component({
-    selector: 'app-latest-profile-song',
-    imports: [LatestProfileSongItem],
-    templateUrl: './latest-profile-song.html',
-    styleUrl: './latest-profile-song.scss',
+    selector: 'app-latest-pers-song-card',
+    imports: [LatestPersSongCardItem],
+    templateUrl: './latest-pers-song-card.html',
+    styleUrl: './latest-pers-song-card.scss',
 })
-export class LatestProfileSong {
+export class LatestPersSongCard {
     @Input() criteria!: string; 
     @Input() count: number = 10;
     @Input() songs: number[] = [1,2,3];
@@ -21,6 +20,3 @@ export class LatestProfileSong {
         }
     }
 }
-
-
-

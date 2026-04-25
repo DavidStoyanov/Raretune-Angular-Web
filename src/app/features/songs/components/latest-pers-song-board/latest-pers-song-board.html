@@ -1,0 +1,16 @@
+<div class="song-container container d-flex flex-column gap-1 py-2">
+    <section>
+        <app-latest-pers-song-card
+            [count]="likeCount"
+            [songs]="likedSongs"
+            [criteria]="'likes'">
+        </app-latest-pers-song-card>
+    </section>
+    <section>
+        <app-latest-pers-song-card
+            [count]="postCount"
+            [songs]="postedSongs"
+            [criteria]="'posts'">
+        </app-latest-pers-song-card>
+    </section>
+</div>

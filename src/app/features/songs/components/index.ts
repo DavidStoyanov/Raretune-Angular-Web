@@ -3,5 +3,6 @@ export * from './song-item/song-item';
 export * from './song-create/song-create';
 export * from './song-content/song-content';
 export * from './song-edit/song-edit';
-export * from './latest-profile-song/latest-profile-song';
-export * from './latest-profile-song-item/latest-profile-song-item';
+export * from './latest-pers-song-board/latest-pers-song-board';
+export * from './latest-pers-song-card/latest-pers-song-card';
+export * from './latest-pers-song-card-item/latest-pers-song-card-item';

@@ -15,22 +15,7 @@
             </div>
         </section>
         <section class="songs-wrap col-12 col-lg-6">
-            <div class="song-container container d-flex flex-column gap-1 py-2">
-                <section>
-                    <app-latest-profile-song
-                        [count]="likeCount"
-                        [songs]="likedSongs"
-                        [criteria]="'likes'">
-                    </app-latest-profile-song>
-                </section>
-                <section>
-                    <app-latest-profile-song
-                        [count]="postCount"
-                        [songs]="postedSongs"
-                        [criteria]="'posts'">
-                    </app-latest-profile-song>
-                </section>
-            </div>
+            <app-latest-pers-song-board></app-latest-pers-song-board>
         </section>
     </div>
 </div>
