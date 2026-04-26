@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
-import { CreateSongDto, EditSongDto, Song } from '../models';
+import { CreateSongDto, EditSongDto, FavSong, Song } from '../models';
 import { Criteria } from '../../../core/models';
 
 @Injectable({
@@ -49,8 +49,8 @@ export class SongsApi {
         return this.httpClient.get<Song[]>(`${this.apiUrl}/three?criteria=${criteria}`, { withCredentials: true });
     }
 
-    getFavoriteSongs(limit?: number): Observable<Song[]> {
-        return this.httpClient.get<Song[]>(`${this.apiUrl}/favorites?limit=${limit}`, { withCredentials: true });
+    getFavoriteSongs(limit?: number): Observable<FavSong[]> {
+        return this.httpClient.get<FavSong[]>(`${this.apiUrl}/favorites?limit=${limit}`, { withCredentials: true });
     }
     
 }

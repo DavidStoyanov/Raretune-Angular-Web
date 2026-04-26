@@ -2,17 +2,17 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
-import { TruncatePipe } from '../../../../core/pipes';
-import { Song } from '../../models';
+import { TimeAgoPipe, TruncatePipe } from '../../../../core/pipes';
+import { FavSong } from '../../models';
 
 @Component({
     selector: 'app-favorite-item',
-    imports: [RouterLink, TruncatePipe, DatePipe],
+    imports: [RouterLink, TruncatePipe, DatePipe, TimeAgoPipe],
     templateUrl: './favorite-item.html',
     styleUrl: './favorite-item.scss',
 })
 export class FavoriteItem {
-    @Input("favItem") song!: Song;
+    @Input("favItem") song!: FavSong;
     @Output("dislike") remove = new EventEmitter<string>();
 
     removeFavorite() {
