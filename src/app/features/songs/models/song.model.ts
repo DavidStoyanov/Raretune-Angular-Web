@@ -9,6 +9,7 @@ export interface Song {
     creatorId?: string
     likedBy?: string[]
     imgUrl?: string
+    songUrl: string | null
 }
 
 export interface CreateSongDto {
@@ -18,6 +19,7 @@ export interface CreateSongDto {
     date: string
     origin: string
     imgUrl?: string
+    songUrl: string | null
 }
 
 export interface EditSongDto {

@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { LatestPersSongCardItem } from "../latest-pers-song-card-item/latest-pers-song-card-item";
 import { Song } from '../../models';
 
 @Component({
     selector: 'app-latest-pers-song-card',
-    imports: [LatestPersSongCardItem],
+    imports: [LatestPersSongCardItem, CommonModule],
     templateUrl: './latest-pers-song-card.html',
     styleUrl: './latest-pers-song-card.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,30 @@
+<section
+    class="upload-box"
+    [ngClass]="{ dragging: isDragging }"
+    [ngStyle]="getPadding()"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()"
+    (click)="fileInput.click()"
+>
+    <input
+        type="file"
+        #fileInput
+        hidden
+        accept="audio/*"
+        (change)="onFileSelected($event)"
+    />
+
+    <div class="visible">
+        @if (!file) {
+        <p>Choose File</p>
+        <hr>
+        <p>or just Drag & drop</p>
+        } @else {
+        <p>Selected: {{ file.name }}</p>
+        <hr>
+        <p>{{percentage}}% {{isUploaded ? "uploaded!" : "uploading..."}}</p>
+        }
+    </div>
+
+</section>
