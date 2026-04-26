@@ -2,14 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CreateSongDto, Song } from '../../models';
+import { CreateSongDto } from '../../models';
 import { SongsApi, SongFormWrapper } from '../../services';
+import { SongUpload } from '..';
 
 @Component({
-  selector: 'app-song-create',
-  imports: [ReactiveFormsModule],
-  templateUrl: './song-create.html',
-  styleUrl: './song-create.scss',
+    selector: 'app-song-create',
+    imports: [ReactiveFormsModule, SongUpload],
+    templateUrl: './song-create.html',
+    styleUrl: './song-create.scss',
 })
 export class SongCreate implements OnInit {
     private router = inject(Router);

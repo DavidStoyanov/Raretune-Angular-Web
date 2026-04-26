@@ -1,7 +1,7 @@
 <div class="container col-md-6">
 
     <h4 class="mb-3">Post Song</h4>
-    <form [formGroup]="songForm" (ngSubmit)="onSubmit()" method="post">
+    <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="gap-1" method="post">
 
         <div class="row g-3">
             <div class="col-sm">
@@ -81,6 +81,13 @@
                     class="form-control"
                     [class.is-valid]="formWrap.originControl?.valid && formWrap.originControl?.touched"
                     formControlName="origin">
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-sm">
+                <label for="upload" class="form-label">Upload File</label>
+                <app-song-upload></app-song-upload>
             </div>
         </div>
             

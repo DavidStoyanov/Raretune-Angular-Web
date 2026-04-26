@@ -1,9 +1,10 @@
 <div class="top-three-container container row">
-    <section class="col-6 d-flex flex-column align-items-center justify-content-around">
+    <section [ngClass]="count > 0 ? 'col-6' : 'col-12'" class="d-flex flex-column align-items-center justify-content-around">
         <p class="title">{{getTitle()}}</p>
         <p class="header">{{count}}</p>
     </section>
-    <section class="col-6 d-flex flex-column align-items-center justify-content-around">
+    @if (count > 0) {
+    <section [ngClass]="count > 0 ? 'col-6' : 'col-12'" class="d-flex flex-column align-items-center justify-content-around">
         <p class="title">Latest 3</p>
         <div class="value">
         @for (song of songs; track $index) {
@@ -11,4 +12,5 @@
         }
         </div>
     </section>
+    }
 </div>
