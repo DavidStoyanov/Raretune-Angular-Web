@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, Output } from '@angular/core';
 
 import { CloudinaryApi } from '../../../../core/services';
-import { CldAudio, CloudinaryUploadResponse } from '../../../../core/models';
+import { CldAudioResponse, UploadEvent } from '../../../../core/models';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-song-upload',
@@ -10,21 +11,38 @@ import { CldAudio, CloudinaryUploadResponse } from '../../../../core/models';
     templateUrl: './song-upload.html',
     styleUrl: './song-upload.scss',
 })
-export class SongUpload {
-    @Output() metadata = new EventEmitter<CloudinaryUploadResponse>();
+export class SongUpload implements OnDestroy {
+    @Output() newProcess = new EventEmitter<void>();
     @Output() progress = new EventEmitter<number>();
+    @Output() metadata = new EventEmitter<CldAudioResponse>();
 
     private cloudinaryApi = inject(CloudinaryApi);
-    
+    private songUploadSub?: Subscription;
+
     file: File | null = null;
-    isDragging = false;
+    isDragging: boolean = false;
+    isUploaded: boolean = false;
+    percentage: number = 0;
 
     uploadFile(file: File) {
-        this.cloudinaryApi.uploadImage(file).subscribe({
-            next: (res: number | CloudinaryUploadResponse) => { 
+        this.songUploadSub = this.cloudinaryApi.uploadImage(file).subscribe({
+            next: (res: UploadEvent) => { 
+                if (res === null) return;
                 switch (typeof res) {
-                    case 'number': this.progress.emit(res); return;
-                    case 'object': this.metadata.emit(res); return;
+                    case 'string':
+                        this.isUploaded = false;
+                        this.newProcess.emit();
+                        return;
+
+                    case 'number':
+                        this.percentage = res;
+                        this.progress.emit(res);
+                        return;
+
+                    case 'object':
+                        this.isUploaded = true;
+                        this.metadata.emit(res);
+                        return;
                 }
             },
             error: (err) => { console.log(err); },
@@ -62,5 +80,10 @@ export class SongUpload {
         return {
             padding: this.file ? '1em 2em' : '1em 4em'
         };
+    }
+
+    
+    ngOnDestroy(): void {
+        this.songUploadSub?.unsubscribe();
     }
 }

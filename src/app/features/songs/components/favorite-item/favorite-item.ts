@@ -7,7 +7,7 @@ import { FavSong } from '../../models';
 
 @Component({
     selector: 'app-favorite-item',
-    imports: [RouterLink, TruncatePipe, DatePipe, TimeAgoPipe],
+    imports: [RouterLink, TruncatePipe, TimeAgoPipe],
     templateUrl: './favorite-item.html',
     styleUrl: './favorite-item.scss',
 })

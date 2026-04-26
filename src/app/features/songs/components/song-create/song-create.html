@@ -87,7 +87,11 @@
         <div class="row g-3">
             <div class="col-sm">
                 <label for="upload" class="form-label">Upload File</label>
-                <app-song-upload></app-song-upload>
+                <app-song-upload
+                    (newProcess)="onUploadStart()"
+                    (progress)="updateProgress($event)"
+                    (metadata)="songUploaded($event)">
+                </app-song-upload>
             </div>
         </div>
             

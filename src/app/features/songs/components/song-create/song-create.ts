@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CreateSongDto } from '../../models';
 import { SongsApi, SongFormWrapper } from '../../services';
 import { SongUpload } from '..';
+import { CldAudioResponse } from '../../../../core/models';
 
 @Component({
     selector: 'app-song-create',
@@ -20,15 +21,19 @@ export class SongCreate implements OnInit {
     protected formWrap = inject(SongFormWrapper);
     protected songForm!: FormGroup;
 
-    constructor() {}
-    
+    private isSongUploading: boolean = false;
+    private isSongUploaded: boolean = false;
+    private uploadPercentage: number = 0;
+    private cldAudioResponse?: CldAudioResponse;
+
     onSubmit() {
         if (this.songForm.invalid) return;
 
         const { name, description, creator, releaseDate, origin } = this.songForm.value;
+        const songUrl = this.cldAudioResponse?.url || null;
 
         const createSongDto: CreateSongDto = {
-            name, description, creator, date: releaseDate, origin
+            name, description, creator, date: releaseDate, origin, songUrl
         }
 
         this.songsApi.create(createSongDto).subscribe({
@@ -44,8 +49,24 @@ export class SongCreate implements OnInit {
         });
     }
 
+    onUploadStart() {
+        this.isSongUploading = true;
+        this.isSongUploaded = false;
+    }
+
+    updateProgress(percentage: number) {
+        //console.log(percentage);
+        this.uploadPercentage = percentage;
+    }
+    
+    songUploaded(data: CldAudioResponse) {
+        console.log(data);
+        this.isSongUploaded = true;
+        this.isSongUploading = false;
+        this.cldAudioResponse = data;
+    }
+
     ngOnInit(): void {
         this.songForm = this.formWrap.formGroup;
     }
-
 }
