@@ -2,9 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
-import { FavoriteItem } from '../favorite-item/favorite-item';
 import { SongsApi } from '../../services';
 import { Song } from '../../models';
+import { FavoriteItem } from '../favorite-item/favorite-item';
 
 @Component({
     selector: 'app-favorite-board',

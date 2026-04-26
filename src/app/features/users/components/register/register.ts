@@ -35,6 +35,8 @@ export class Register {
             return 'Email address is required!'
         } else if (this.emailControl?.hasError('email')) {
             return 'Please enter a valid email address. eg: "name@example.com"';
+        } else if (this.emailControl?.hasError('register-failed')){
+            return 'Email already used by another user.'
         }
 
         return '';
@@ -141,7 +143,8 @@ export class Register {
                 console.log(response);
             },
             error: (err) => {
-                console.log(err)
+                console.log(err);
+                this.onInvalidEmail();
             }
         });
     }
@@ -162,5 +165,10 @@ export class Register {
             //return { 'passdatamismatch': false }
         }
         return null;
+    }
+
+    private onInvalidEmail() {
+        this.emailControl?.patchValue('');
+        this.emailControl?.setErrors({'register-failed': true});
     }
 }

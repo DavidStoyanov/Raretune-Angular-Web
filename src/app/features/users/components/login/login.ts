@@ -43,6 +43,8 @@ export class Login {
             return 'Password must be at least 6 characters.';
         } else if (this.passwordControl?.hasError('maxlength')) {
             return 'Password should not exceed 255 characters.'
+        } else if (this.passwordControl?.hasError('login-failed')){
+            return 'Invalid username or password!'
         }
 
         return '';
@@ -83,9 +85,14 @@ export class Login {
                 console.log(response);
             },
             error: (err) => {
-                console.log(err)
+                console.log(err);
+                this.onInvalidPassword();
             }
-        });
+        })
+    }
 
+    private onInvalidPassword() {
+        this.passwordControl?.patchValue('');
+        this.passwordControl?.setErrors({'login-failed': true});
     }
 }

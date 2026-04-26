@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { UsersApi } from '../../../users/services';
     templateUrl: './song-content.html',
     styleUrl: './song-content.scss',
 })
-export class SongContent implements OnInit {
+export class SongContent implements OnInit, AfterViewInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
     private songsApi = inject(SongsApi);
@@ -23,11 +23,18 @@ export class SongContent implements OnInit {
     
     private songId!: string;
     song: Song | null = null;
+    isContentLoaded: boolean = false;
+    isLiked: boolean = false;
 
     constructor() { }
-
-    likeSong() {
-        this.songsApi.like(this.songId).subscribe(); //todo: on next() switch button ot dislike
+    
+    likeAction() {
+        this.isLiked = !this.isLiked;
+        switch(this.isLiked) {
+            case true: this.likeSong(); return;
+            case false: this.dislikeSong(); return;
+            default: return;
+        }
     }
 
     editSong() {
@@ -45,16 +52,44 @@ export class SongContent implements OnInit {
         });
     }
 
+    private likeSong() {
+        this.songsApi.like(this.songId).subscribe({
+            next: () => this.isLiked = true,
+            error: (err) => { console.log(err); },
+        }); 
+    }
+
+    private dislikeSong() {
+        this.songsApi.dislike(this.songId).subscribe({
+            next: () => this.isLiked = false,
+            error: (err) => { console.log(err); },
+        }); 
+    }
+
+    private setLikeState() {
+        this.isLiked = this.song?.likedBy
+            ?.includes(this.getUser()?.id as string) as boolean;
+    }
+
+
     ngOnInit(): void {
         this.songId = this.route.snapshot.paramMap.get('songId') as string;
 
         this.songsApi.getOne(this.songId).subscribe({
-            next: (song) => { this.song = song },
+            next: (song) => {
+                this.song = song;
+                this.setLikeState();
+                this.isContentLoaded = true;
+            },
             error: (err) => { 
                 console.log(err);
                 this.router.navigateByUrl('/song/catalog');
             },
         });
+    }
+
+    ngAfterViewInit(): void {
+        //throw new Error('Method not implemented.');
     }
 }
 

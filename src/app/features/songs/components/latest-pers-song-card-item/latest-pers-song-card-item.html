@@ -1,6 +1,6 @@
 <section (click)="visitDetails()" class="pair">
     <!--<p class="title">Song Name {{song.name - song.creator}}</p>
     <p class="value">Published by: {{song.creatorId}}</p>  todo -->
-    <p class="title">Song Name {{song.name}}</p>
+    <p class="title">Song Name {{song.name | truncate}}</p>
     <p class="value">Song creator: {{song.creator}}</p>
 </section>

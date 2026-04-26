@@ -1,4 +1,5 @@
 <div class="container col-md-8">
+    @if (isContentLoaded){
     <div class="picture-container">
         <!-- https://pixabay.com/illustrations/icon-music-mp3-music-icon-1728567/ -->
         <img src="https://cdn.pixabay.com/photo/2016/10/10/14/47/icon-1728567_1280.jpg" alt="default-song-picture">
@@ -43,9 +44,13 @@
 
         @if (isLoggedIn()) {
         <div class="left-group">
-            <button (click)="likeSong()" class="action-button like-btn">
-                <span class="icon-box">❤️</span>
-                <span class="btn-text">Like</span>
+            <button (click)="likeAction()" class="action-button like-btn">
+                <span class="icon-box">
+                    {{ isLiked ? "🤍" : "❤️" }}
+                </span>
+                <span class="btn-text">
+                    {{ isLiked ? "Dislike" : "Like" }}
+                </span>
             </button>
         </div>
         }
@@ -64,5 +69,7 @@
         }
         
     </div>
+
+    }
 
 </div>

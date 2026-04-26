@@ -28,16 +28,18 @@ The backend server will run, on port `http://localhost:3000/` by default.
 
 ## Music App — Full‑Stack Project
 
-#### A simple but feature‑rich music platform built with Angular, Node.js, and Express, offering secure authentication and full song management.
+#### A simple music platform built with Angular, Node.js, and Express, offering secure authentication and full song management.
 
 ## User Flows
 
 #### Register / Login / Logout (Authentication)
 #### Upload songs with metadata
 #### View catalog of all songs
-#### Like, edit, and delete songs (authenticated users only)
+#### Review your favorite songs
+#### create, edit, delete and like songs (authenticated users only)
 
 ## Core Features
+
 #### Secure Auth using encrypted, HTTP‑only JWT cookies
 #### Song Management: upload, edit, delete, like
 #### Catalog View: browse all songs with details
@@ -45,14 +47,16 @@ The backend server will run, on port `http://localhost:3000/` by default.
 #### Node.js + Express Backend for API and logic
 
 ## Angular Features
-#### AuthGuard – protects authenticated routes
-#### GuestGuard – prevents logged‑in users from accessing guest pages
-#### Lazy‑Loaded Routes – faster initial load
-#### Dynamic Page Titles – visible in browser tab
-#### SCSS Styling – modular and maintainable styles
+
+#### Implements guards (AuthGuard, GuestGuard) that are going to check if user have right to visit the concrete page route
+#### Lazy‑Loaded Routes – faster site initial load, and lazy loaded components only when visitor need them
+#### Service will be shown as feature-api.ts at most of the time using new angular naming convention 
+#### Dynamic Page Titles – visible in browser tab title names
+#### Bootstrap + SCSS Styling – modular and maintainable styles, the goal is to create intuitive, modern, responsive user interface design, as-well as maximize usability and ensure a pleasant user experience
 #### TypeScript Interfaces – strong typing across the app
+#### Pipes where used too, mainly to manipulate component template content
 
 ## Additional Pages
 
-#### FAQ Page – common questions and answers
 #### About Page – project overview and purpose
+#### FAQ Page – common questions and answers

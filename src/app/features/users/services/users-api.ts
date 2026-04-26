@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 
 import { User, UserLoginDto, UserRegisterDto } from '../models';
 
@@ -29,7 +29,7 @@ export class UsersApi {
             withCredentials: true
         }).pipe(
             tap(user => this.setSession(user)),
-            catchError(error => of(null))
+            catchError(error => throwError(() => error))
         );
     }
 
@@ -38,7 +38,7 @@ export class UsersApi {
             withCredentials: true
         }).pipe(
             tap(user => this.setSession(user)),
-            catchError(error => of(null))
+            catchError(error => throwError(() => error))
         );
     }
 
