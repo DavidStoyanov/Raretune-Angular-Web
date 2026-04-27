@@ -21,7 +21,7 @@ export class CloudinaryApi {
         });
     }
 
-    uploadImage(file: File): Observable<UploadEvent> {
+    upload(file: File): Observable<UploadEvent> {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'rxnva3ib');

@@ -25,8 +25,12 @@ export class SongUpload implements OnDestroy {
     percentage: number = 0;
 
     uploadFile(file: File) {
-        this.songUploadSub = this.cloudinaryApi.uploadImage(file).subscribe({
-            next: (res: UploadEvent) => { 
+        if (this.songUploadSub) {
+            this.songUploadSub.unsubscribe();
+        }
+
+        this.songUploadSub = this.cloudinaryApi.upload(file).subscribe({
+            next: (res: UploadEvent) => {
                 if (res === null) return;
                 switch (typeof res) {
                     case 'string':
@@ -82,7 +86,7 @@ export class SongUpload implements OnDestroy {
         };
     }
 
-    
+
     ngOnDestroy(): void {
         this.songUploadSub?.unsubscribe();
     }
