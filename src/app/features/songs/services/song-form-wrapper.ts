@@ -13,7 +13,7 @@ export class SongFormWrapper {
         this.songForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(35)]],
             description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(5000)]],
-            creator: ['', [Validators.required]],
+            creator: ['', [Validators.required, Validators.maxLength(100)]],
             releaseDate: ['', [Validators.pattern(/^[12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|31)$/)]],
             origin: ['', []],
         })
@@ -51,6 +51,8 @@ export class SongFormWrapper {
     get creatorErrorMessage(): string {
         if (this.creatorControl?.hasError('required')) {
             return 'Creator name is required!'
+        } else if (this.descriptionControl?.hasError('maxlength')) {
+            return 'Creator name not exceed 100 characters.'
         }
 
         return '';
