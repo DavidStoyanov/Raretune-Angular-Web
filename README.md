@@ -1,6 +1,6 @@
 # Raretune-Angular-Web
 
-### This application could be used to discover and share songs you like. Users can create accounts and upload their songs, like them, see their activity in profile page.
+### This application main purpose is to provide functionality for their users to discover and share songs they like. Users can create accounts and upload their songs, like them, see their activity in profile page.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
 
@@ -32,11 +32,11 @@ The backend server will run, on port `http://localhost:3000/` by default.
 
 ## User Flows
 
-#### Register / Login / Logout (Authentication)
-#### Upload songs with metadata
-#### View catalog of all songs
-#### Review your favorite songs
-#### create, edit, delete and like songs (authenticated users only)
+#### Register / Login / Logout (Authentication for users)
+#### View catalog of all songs with details (Available for any viewer)
+#### Upload songs with metadata (Only authenticated)
+#### Liked and Review your favorite songs (Only authenticated)
+#### Edit and Delete songs (Only owner of the post)
 
 ## Core Features
 
@@ -50,11 +50,16 @@ The backend server will run, on port `http://localhost:3000/` by default.
 
 #### Implements guards (AuthGuard, GuestGuard) that are going to check if user have right to visit the concrete page route
 #### Lazy‑Loaded Routes – faster site initial load, and lazy loaded components only when visitor need them
-#### Service will be shown as feature-api.ts at most of the time using new angular naming convention 
+#### Service will be shown as feature-api.ts at most of the time using new angular naming convention
+#### Most components are structured in a modular way, allowing them to be imported and reused in multiple areas of the application.
 #### Dynamic Page Titles – visible in browser tab title names
 #### Bootstrap + SCSS Styling – modular and maintainable styles, the goal is to create intuitive, modern, responsive user interface design, as-well as maximize usability and ensure a pleasant user experience
 #### TypeScript Interfaces – strong typing across the app
 #### Pipes where used too, mainly to manipulate component template content
+
+## Pitfalls Notes
+
+#### Unless the song finishes uploading to 100%, no audio file will be attached to the post.
 
 ## Additional Pages
 
