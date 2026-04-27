@@ -44,7 +44,7 @@ export class Register {
 
     get usernameErrorMessage(): string {
         if (this.usernameControl?.hasError('required')) {
-            return 'Email address is required!'
+            return 'Username is required!'
         } else if (this.usernameControl?.hasError('minlength')) {
             return 'Username must be at least 2 characters.';
         } else if (this.usernameControl?.hasError('maxlength')) {
