@@ -67,8 +67,15 @@
                     type="text"
                     id="releaseDate"
                     class="form-control"
-                    [class.is-valid]="formWrap.releaseDateControl?.valid && formWrap.releaseDateControl?.touched"
+                    [class.is-valid]="formWrap.releaseDateControl?.valid"
+                    [class.is-invalid]="formWrap.isReleaseDateInvalid"
                     formControlName="releaseDate">
+
+                @if(formWrap.isReleaseDateInvalid) {
+                <small class="input-danger text-danger">
+                    {{ formWrap.releaseDateErrorMessage }}
+                </small>
+                }
             </div>
         </div>
 

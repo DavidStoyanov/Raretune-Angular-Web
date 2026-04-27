@@ -1,4 +1,10 @@
+
+@if (isLikeNotify) {
+    <app-notification [text]="likeNotifyText"></app-notification>
+}
+
 <div class="container col-md-8">
+
 @if (isContentLoaded){
     <div class="picture-container">
         <!-- https://pixabay.com/illustrations/icon-music-mp3-music-icon-1728567/ -->

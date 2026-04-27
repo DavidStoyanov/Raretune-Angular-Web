@@ -6,10 +6,11 @@ import { SongsApi } from '../../services';
 import { Song } from '../../models';
 import { UsersApi } from '../../../users/services';
 import { MusicPlayer } from '../music-player/music-player';
+import { Notification } from '../../../../shared/components';
 
 @Component({
     selector: 'app-song-content',
-    imports: [CommonModule, RouterLink, MusicPlayer],
+    imports: [CommonModule, RouterLink, MusicPlayer, Notification],
     templateUrl: './song-content.html',
     styleUrl: './song-content.scss',
 })
@@ -25,7 +26,11 @@ export class SongContent implements OnInit, AfterViewInit {
     private songId!: string;
     song: Song | null = null;
     isContentLoaded: boolean = false;
+
     isLiked: boolean = false;
+    isLikeNotify: boolean = false;
+    likeNotifyText: string = '';
+    likeTimer?: any;
 
     constructor() { }
     
@@ -55,14 +60,20 @@ export class SongContent implements OnInit, AfterViewInit {
 
     private likeSong() {
         this.songsApi.like(this.songId).subscribe({
-            next: () => this.isLiked = true,
+            next: () => {
+                this.isLiked = true
+                this.showNotification(`You just liked song - ${this.song?.name}`);
+            },
             error: (err) => { console.log(err); },
         }); 
     }
 
     private dislikeSong() {
         this.songsApi.dislike(this.songId).subscribe({
-            next: () => this.isLiked = false,
+            next: () => {
+                this.isLiked = false
+                this.showNotification('Song disliked.');
+            },
             error: (err) => { console.log(err); },
         }); 
     }
@@ -94,6 +105,26 @@ export class SongContent implements OnInit, AfterViewInit {
                 this.router.navigateByUrl('/song/catalog');
             },
         });
+    }
+
+    showNotification(text: string) {
+        //todo notification system
+        if (this.likeTimer !== null || this.likeTimer !== undefined) {
+            clearTimeout(this.likeTimer);
+        }
+
+        this.isLikeNotify = true;
+        this.likeNotifyText = text;
+
+        this.likeTimer = setTimeout(() => {
+            this.hideNotification();
+            this.likeTimer = null;
+        }, 3000)
+    }
+
+    hideNotification() {
+        this.isLikeNotify = false;
+        this.likeNotifyText = '';
     }
 
     ngAfterViewInit(): void {

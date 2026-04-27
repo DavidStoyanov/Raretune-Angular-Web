@@ -1,4 +1,12 @@
 <div class="container bg-light">
+    <h3 class="mb-4">Songs Catalog</h3>
+
+    @if (isCollectionEmpty$ | async) {
+    <div class="alert alert-info">
+        This place is quiet… too quiet. <span routerLink="/song/new" class="my-link">Upload</span> the first song.
+    </div>
+    }
+
     <div class="row">
         @for (song of songs$ | async; track $index) {
         <div class="col-sm-3">

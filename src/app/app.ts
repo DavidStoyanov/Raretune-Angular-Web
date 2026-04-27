@@ -46,5 +46,16 @@ export class App {
                 this.SITE_NAME;
             this.titleService.setTitle(title);
         });
+
+        /* this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+                debugger
+                const tree = this.router.parseUrl(this.router.url);
+                const redirect = tree.queryParams['redirect'];
+                if (redirect) {
+                    this.router.createUrlTree([redirect]);
+                }
+            }
+        }); */
     }
 }

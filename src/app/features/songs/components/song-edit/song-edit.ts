@@ -3,6 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SongsApi, SongFormWrapper } from '../../services';
+import { UsersApi } from '../../../users/services';
 import { EditSongDto, Song } from '../../models';
 import { CldAudioResponse } from '../../../../core/models';
 import { SongUpload } from '../song-upload/song-upload';
@@ -16,10 +17,11 @@ import { SongUpload } from '../song-upload/song-upload';
 export class SongEdit implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
-
+    
+    private usersApi = inject(UsersApi);
     private songsApi = inject(SongsApi);
     protected formWrap = inject(SongFormWrapper);
-
+    
     protected songForm!: FormGroup;
 
     private songId: string | null = null;
@@ -58,9 +60,12 @@ export class SongEdit implements OnInit {
         
         this.songId = this.route.snapshot.paramMap.get('songId');
         if (this.songId === null) return;
-
+    
         this.songsApi.getOne(this.songId).subscribe({
-            next: (song) => { this.patchSongForm(song) },
+            next: (song) => {
+                this.patchSongForm(song);
+                this.checkUserAuthorized(song.posterId);
+            },
             error: (err) => { console.log(err) },
         });
     }
@@ -75,5 +80,15 @@ export class SongEdit implements OnInit {
             ...song,
             releaseDate: song.date
         });
+    }
+
+    /* checks if user is authorized to edit */
+    private checkUserAuthorized(posterId?: string) {
+        //Guard for users
+        // todo ownedSongs or canEdit prop from api
+        const userId = this.usersApi.currentUser()?.id;
+        if (userId !== posterId) {
+            this.router.navigate(["/song/catalog"]);
+        }
     }
 }

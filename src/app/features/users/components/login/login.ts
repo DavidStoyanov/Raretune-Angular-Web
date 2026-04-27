@@ -4,6 +4,7 @@ import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, AbstractContro
 
 import { UsersApi } from '../../services';
 import { UserLoginDto } from '../../models';
+import { RedirectService } from '../../../../core/services';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class Login {
     private router = inject(Router);
     
     private usersApi = inject(UsersApi);
+    private redirectService = inject(RedirectService);
 
     protected loginForm!: FormGroup;
 
@@ -80,9 +82,14 @@ export class Login {
 
         this.usersApi.login(userLoginDto).subscribe({
             next: (response) => {
-                this.loginForm.reset();
-                this.router.navigate(['/song/catalog']);
                 console.log(response);
+                this.loginForm.reset();
+                const redirectUrl = this.redirectService.getRedirect();
+                if (redirectUrl !== null) {
+                    this.router.navigate([redirectUrl]);
+                } else {
+                    this.router.navigate(['/song/catalog']);
+                }
             },
             error: (err) => {
                 console.log(err);
