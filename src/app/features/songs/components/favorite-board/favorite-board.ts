@@ -17,10 +17,14 @@ export class FavoriteBoard implements OnInit {
     private songLikesApi = inject(SongLikesApi);
 
     private favoritesSubject = new BehaviorSubject<FavSong[]>([]);
+    private likeDateMap!: Map<string,string>;
+
+    isCollectionEmpty$!: Observable<boolean>;
 
     favorites$ = this.favoritesSubject.asObservable();
-    isEmpty$!: Observable<boolean>;
-    likeDateMap!: Map<string,string>;
+    sortedFavorites$ = this.favorites$.pipe(
+        map(songs => [...songs].sort((a, b) => b.likedAt.localeCompare(a.likedAt)))
+    );
 
     dislike(songId: string) {
         this.songsApi.dislike(songId).subscribe({
@@ -41,7 +45,8 @@ export class FavoriteBoard implements OnInit {
                     songLikes.map(like => [like.songId, like.likedAt])
                 );
 
-                const favResult: FavSong[] = favs.map(fav => ({
+                const favResult: FavSong[] = favs
+                .map(fav => ({
                     ...fav,
                     likedAt: this.likeDateMap.get(fav.id) || null
                 })) as FavSong[];
@@ -50,7 +55,7 @@ export class FavoriteBoard implements OnInit {
             })
         });
 
-        this.isEmpty$ = this.favorites$.pipe(
+        this.isCollectionEmpty$ = this.favorites$.pipe(
             //tap(favs => console.log('Favorites count:', favs.length)),
             map(favs => favs.length === 0)
         );

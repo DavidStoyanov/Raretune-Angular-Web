@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { SongsApi } from '../../services';
@@ -9,7 +9,7 @@ import { MusicPlayer } from '../music-player/music-player';
 
 @Component({
     selector: 'app-song-content',
-    imports: [CommonModule, MusicPlayer],
+    imports: [CommonModule, RouterLink, MusicPlayer],
     templateUrl: './song-content.html',
     styleUrl: './song-content.scss',
 })
@@ -75,6 +75,10 @@ export class SongContent implements OnInit, AfterViewInit {
     getSongUrl(): string {
         return (this.song?.songUrl) as string;
     }
+
+    isOwner(): boolean {
+        return this.song?.posterId === this.getUser()?.id
+    } 
 
     ngOnInit(): void {
         this.songId = this.route.snapshot.paramMap.get('songId') as string;

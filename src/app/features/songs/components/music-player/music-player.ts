@@ -73,7 +73,6 @@ export class MusicPlayer {
     }
 
     formatTime(sec: number): string {
-        console.log(sec); //debug
         if (!sec) return '0:00';
         const m = Math.floor(sec / 60);
         const s = Math.floor(sec % 60).toString().padStart(2, '0');

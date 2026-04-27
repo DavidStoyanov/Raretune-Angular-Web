@@ -4,22 +4,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SongsApi, SongFormWrapper } from '../../services';
 import { EditSongDto, Song } from '../../models';
+import { CldAudioResponse } from '../../../../core/models';
+import { SongUpload } from '../song-upload/song-upload';
 
 @Component({
     selector: 'app-song-edit',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, SongUpload],
     templateUrl: './song-edit.html',
     styleUrl: './song-edit.scss',
 })
 export class SongEdit implements OnInit {
-    private router = inject(Router);
     private route = inject(ActivatedRoute);
+    private router = inject(Router);
 
     private songsApi = inject(SongsApi);
-    private songId: string | null = null;
-    
     protected formWrap = inject(SongFormWrapper);
+
     protected songForm!: FormGroup;
+
+    private songId: string | null = null;
+
+    private cldAudioResponse?: CldAudioResponse;
 
     constructor() {}
 
@@ -29,8 +34,9 @@ export class SongEdit implements OnInit {
 
         const { name, description, creator, releaseDate, origin } = this.songForm.value;
         
+        const songUrl = this.cldAudioResponse?.url || null;
         const editSongDto: EditSongDto = {
-            name, description, creator, date: releaseDate, origin
+            name, description, creator, date: releaseDate, origin, songUrl
         }
 
         this.songsApi.update(editSongDto, this.songId).subscribe({
@@ -57,6 +63,11 @@ export class SongEdit implements OnInit {
             next: (song) => { this.patchSongForm(song) },
             error: (err) => { console.log(err) },
         });
+    }
+
+    songUploaded(data: CldAudioResponse) {
+        console.log(data);
+        this.cldAudioResponse = data;
     }
 
     private patchSongForm(song: Song) {

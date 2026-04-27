@@ -10,13 +10,19 @@
         <app-music-player [url]="getSongUrl()"></app-music-player>
     </div>
     } @else {
-    <div class="pair">
-        <span style="color: rgb(199, 66, 66);">Song file is not available</span>
-        <!-- todo: Notify users that they can edit the song to add the song file -->
+    <div class="song-missing">
+        <span>Song file is not available.</span>
+        @if (isOwner()) {
+        <span class="space-left">
+            <span class="space-left">You can</span>
+            <span class="space-left">
+                <a [routerLink]="['/song', `${song?.id}`, 'edit']" class="my-link">edit</a>
+            </span>
+            <span class="space-left">the song to add it.</span>
+        </span>
+        }
     </div>
     }
-    
-    
     
     @if (song?.name) {
     <div class="pair">
@@ -68,7 +74,7 @@
         </div>
         }
 
-        @if (song?.posterId === getUser()?.id) {
+        @if (isOwner()) {
         <div class="right-group">
             <button (click)="editSong()" class="action-button edit-btn">
                 <span class="icon-box">✏️</span>

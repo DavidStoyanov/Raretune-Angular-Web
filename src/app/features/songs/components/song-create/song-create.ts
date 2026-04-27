@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 import { CreateSongDto } from '../../models';
 import { SongsApi, SongFormWrapper } from '../../services';
-import { SongUpload } from '..';
 import { CldAudioResponse } from '../../../../core/models';
+import { SongUpload } from '../song-upload/song-upload';
 
 @Component({
     selector: 'app-song-create',
@@ -17,8 +17,8 @@ export class SongCreate implements OnInit {
     private router = inject(Router);
     
     private songsApi = inject(SongsApi);
-    
     protected formWrap = inject(SongFormWrapper);
+    
     protected songForm!: FormGroup;
 
     private isSongUploading: boolean = false;
