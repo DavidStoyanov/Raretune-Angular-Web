@@ -51,8 +51,8 @@ export class SongFormWrapper {
     get creatorErrorMessage(): string {
         if (this.creatorControl?.hasError('required')) {
             return 'Creator name is required!'
-        } else if (this.descriptionControl?.hasError('maxlength')) {
-            return 'Creator name not exceed 100 characters.'
+        } else if (this.creatorControl?.hasError('maxlength')) {
+            return 'Creator name should not exceed 100 characters.'
         }
 
         return '';
