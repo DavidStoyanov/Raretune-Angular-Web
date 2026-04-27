@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { SongsApi } from '../../services';
 import { Song } from '../../models';
 import { UsersApi } from '../../../users/services';
+import { MusicPlayer } from '../music-player/music-player';
 
 @Component({
     selector: 'app-song-content',
-    imports: [CommonModule],
+    imports: [CommonModule, MusicPlayer],
     templateUrl: './song-content.html',
     styleUrl: './song-content.scss',
 })
@@ -71,6 +72,9 @@ export class SongContent implements OnInit, AfterViewInit {
             ?.includes(this.getUser()?.id as string) as boolean;
     }
 
+    getSongUrl(): string {
+        return (this.song?.songUrl) as string;
+    }
 
     ngOnInit(): void {
         this.songId = this.route.snapshot.paramMap.get('songId') as string;

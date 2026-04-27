@@ -9,3 +9,4 @@ export * from './latest-pers-song-card-item/latest-pers-song-card-item';
 export * from './favorite-board/favorite-board';
 export * from './favorite-item/favorite-item';
 export * from './song-upload/song-upload';
+export * from './music-player/music-player';

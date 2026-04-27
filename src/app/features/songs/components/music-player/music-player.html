@@ -1,0 +1,39 @@
+<audio #audio [src]="[songUrl]"></audio>
+<!-- src="/music/song.mp3" -->
+
+<div class="player d-flex align-items-center gap-3">
+
+    <!-- Play / Pause -->
+    <button class="btn btn-outline-primary" (click)="togglePlay()">
+        <i class="bi" [ngClass]="isPlaying ? 'bi-pause-fill' : 'bi-play-fill'"></i>
+    </button>
+
+    <!-- Stop -->
+    <button class="btn btn-outline-secondary" (click)="stop()">
+        <i class="bi bi-stop-fill"></i>
+    </button>
+
+    <!-- Repeat -->
+    <button class="btn" [ngClass]="isRepeat ? 'btn-primary repeat-active' : 'btn-outline-primary'"
+        (click)="toggleRepeat()">
+        <i class="bi bi-arrow-repeat"></i>
+    </button>
+
+    <!-- Time + Seek -->
+    <div class="d-flex align-items-center gap-2 flex-grow-1">
+        <span class="time">{{ formatTime(currentTime) }}</span>
+
+        <input type="range" class="form-range flex-grow-1" [min]="0" [max]="duration" [value]="currentTime"
+            (input)="onSeek($event)" />
+
+        <span class="time">{{ formatTime(duration) }}</span>
+    </div>
+
+    <!-- Volume -->
+    <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-volume-up"></i>
+        <input type="range" class="form-range volume-slider" min="0" max="1" step="0.01" [value]="volume"
+            (input)="onVolume($event)" />
+    </div>
+
+</div>

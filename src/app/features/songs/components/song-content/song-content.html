@@ -1,9 +1,22 @@
 <div class="container col-md-8">
-    @if (isContentLoaded){
+@if (isContentLoaded){
     <div class="picture-container">
         <!-- https://pixabay.com/illustrations/icon-music-mp3-music-icon-1728567/ -->
         <img src="https://cdn.pixabay.com/photo/2016/10/10/14/47/icon-1728567_1280.jpg" alt="default-song-picture">
     </div>
+
+    @if (song?.songUrl) {
+    <div class="music-player">
+        <app-music-player [url]="getSongUrl()"></app-music-player>
+    </div>
+    } @else {
+    <div class="pair">
+        <span style="color: rgb(199, 66, 66);">Song file is not available</span>
+        <!-- todo: Notify users that they can edit the song to add the song file -->
+    </div>
+    }
+    
+    
     
     @if (song?.name) {
     <div class="pair">
@@ -70,6 +83,5 @@
         
     </div>
 
-    }
-
+}
 </div>
